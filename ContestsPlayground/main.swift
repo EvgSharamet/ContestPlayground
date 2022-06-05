@@ -488,7 +488,7 @@ if EQ(a: ABCS, b:(ABFS + AFCS + FBCS)) {
 }
 print("no")
 */
-
+/*
 import Foundation
 class Solution {
     func isValid(_ s: String) -> Bool {
@@ -531,3 +531,140 @@ class Solution {
 let sol = Solution()
 let inputString = "(]"
 print (sol.isValid(inputString))
+*/
+
+/*Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+*/
+
+/*
+class Solution {
+    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+        var shifts: [Int] = []
+        var max = -1
+        var shift = 0
+        var shiftSum = 0
+        var blya = 0
+        let reversArr: [Int] = temperatures.reversed()
+        print(reversArr)
+        for (index, value) in reversArr.enumerated() {
+            if index == 0 {
+                shifts.append(0)
+                max = value
+                continue
+            }
+            
+            if max < value {
+                max = value
+                shift = 0
+                shifts.append(shift)
+                shiftSum = 0
+                blya = 0
+                continue
+            }
+            
+            if reversArr[index - 1] > value {
+                shift = 1
+                shifts.append(shift)
+                blya += 1
+            } else {
+                print(blya)
+                shifts.append(blya)
+                blya += blya
+            }
+       //     print( index , value , shiftSum)
+        }
+        return shifts.reversed()
+    }
+}
+let sol = Solution()
+let Input = [30,60,90]
+            //[0,1,1,4,2,1,1,0,0]
+print(sol.dailyTemperatures(Input))
+
+*/
+/*
+import Foundation
+enum APIError: Error {
+    case unvalidURL
+    case DataIsEmpty
+}
+
+class ApiManager {
+    
+    func f(str: String, callBack: @escaping (Result<Data,APIError>)->Void ) {
+        guard let url  = URL(string: str) else {
+            callBack( Result.failure(APIError.unvalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) {data, response, error in
+            guard let data = data else {
+                callBack( Result.failure(APIError.DataIsEmpty))
+                return
+            }
+            return callBack( Result.success(data))
+        }
+    }
+}
+*/
+/*
+//Количество равных максимальному
+var i = -1
+var max = -1
+var maxCounter  = 0
+repeat
+{
+    i = Int(readLine()!)!
+    if i > max {
+        max = i
+        maxCounter = 1
+        continue
+    }
+    
+    if i == max {
+        maxCounter += 1
+        continue
+    }
+} while i != 0
+
+print(maxCounter)
+*/
+
+// MARK: - Min Stack
+// Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+/*
+struct element {
+    let value: Int
+    let min: Int
+}
+
+class MinStack {
+    var stack: [element] = []
+    init() {
+        
+    }
+    
+    func push(_ val: Int) {
+        if let min = stack.last?.min {
+            if min < val {
+                stack.append(element(value: val,
+                                     min: min))
+                return
+            }
+        }
+        stack.append(element(value: val, min: val))
+    }
+    
+    func pop() {
+        stack.removeLast()
+    }
+    
+    func top() -> Int {
+        stack.last!.value
+    }
+    
+    func getMin() -> Int {
+        stack.last!.min
+    }
+}
+*/
