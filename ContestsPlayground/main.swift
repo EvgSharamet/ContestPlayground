@@ -668,3 +668,50 @@ class MinStack {
     }
 }
 */
+
+//MARK: - Дома и магазины
+
+/*
+На Новом проспекте построили подряд 10 зданий. Каждое здание может быть либо жилым домом, либо магазином, либо офисным зданием.
+Но оказалось, что жителям некоторых домов на Новом проспекте слишком далеко приходится идти до ближайшего магазина. Для разработки плана развития общественного транспорта на Новом проспекте мэр города попросил вас выяснить, какое же наибольшее расстояние приходится преодолевать жителям Нового проспекта, чтобы дойти от своего дома до ближайшего магазина.
+*/
+//1 обозначает жилой дом
+//2 обозначает магазин
+
+let inputString = readLine()!.split(separator: " ")
+var mask = [Int](repeating: 0, count: inputString.count)
+var queue: [Int] = []
+
+for (index, value) in inputString.enumerated() {
+    if value == "2" {
+        mask[index] = 1
+        queue.append(index + 1)
+    }
+}
+mask.insert(-1, at: 0)
+mask.append(-1)
+
+while queue.isEmpty == false {
+    let index = queue.first!
+    if mask[index - 1] == 0 {
+        mask[index - 1] = mask[index] + 1
+        queue.append(index - 1)
+    }
+    if mask[index + 1] == 0 {
+        mask[index + 1] = mask[index] + 1
+        queue.append(index + 1)
+    }
+    queue.removeFirst()
+}
+
+var max = -1
+var arr: [Int] = []
+mask.removeFirst()
+mask.removeLast()
+
+for (index, value) in inputString.enumerated() {
+    if value == "1" {
+        arr.append( mask[index] )
+    }
+}
+print(arr.max()! - 1)
