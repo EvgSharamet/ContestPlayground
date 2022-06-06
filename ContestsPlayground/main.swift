@@ -533,55 +533,6 @@ let inputString = "(]"
 print (sol.isValid(inputString))
 */
 
-/*Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
-*/
-
-/*
-class Solution {
-    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
-        var shifts: [Int] = []
-        var max = -1
-        var shift = 0
-        var shiftSum = 0
-        var blya = 0
-        let reversArr: [Int] = temperatures.reversed()
-        print(reversArr)
-        for (index, value) in reversArr.enumerated() {
-            if index == 0 {
-                shifts.append(0)
-                max = value
-                continue
-            }
-            
-            if max < value {
-                max = value
-                shift = 0
-                shifts.append(shift)
-                shiftSum = 0
-                blya = 0
-                continue
-            }
-            
-            if reversArr[index - 1] > value {
-                shift = 1
-                shifts.append(shift)
-                blya += 1
-            } else {
-                print(blya)
-                shifts.append(blya)
-                blya += blya
-            }
-       //     print( index , value , shiftSum)
-        }
-        return shifts.reversed()
-    }
-}
-let sol = Solution()
-let Input = [30,60,90]
-            //[0,1,1,4,2,1,1,0,0]
-print(sol.dailyTemperatures(Input))
-
-*/
 /*
 import Foundation
 enum APIError: Error {
@@ -677,7 +628,7 @@ class MinStack {
 */
 //1 обозначает жилой дом
 //2 обозначает магазин
-
+/*
 let inputString = readLine()!.split(separator: " ")
 var mask = [Int](repeating: 0, count: inputString.count)
 var queue: [Int] = []
@@ -715,3 +666,68 @@ for (index, value) in inputString.enumerated() {
     }
 }
 print(arr.max()! - 1)
+*/
+
+
+// MARK: - 739. Daily Temperatures
+
+//Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days
+//you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+/*
+class Solution {
+    func collapseStack (stack: [Int], max: Int) -> [Int] {
+        var newStack = stack
+        while (stack.isEmpty == false && stack.last! < max ) {
+            newStack.removeLast()
+        }
+        newStack.append(max)
+        return newStack
+    }
+    
+    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+        let reversArr: [Int] = temperatures.reversed()
+        var maxStack: [Int] = []
+        
+        for item in 1...(reversArr.count - 1) {
+            if !maxStack.isEmpty && item > maxStack.last! {
+                maxStack = collapseStack(stack: maxStack, max: item)
+            }
+            
+        }
+        return []
+    }
+}
+
+let sol = Solution()
+let temperatures = [73,74,75,71,69,72,76,73]
+sol.dailyTemperatures(temperatures)
+*/
+
+// MARK: - merge sort
+let first = [ 1, 34, 45, 56, 678, 890, 1000, 1002, 2345, 66789, 987654, 98765678]
+let second = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 1234, 5678, 8765, 98765]
+var answer: [Int] = []
+let rightSize = first.count + second.count
+
+var firstIndex = 0
+var secondIndex = 0
+
+while(answer.count != rightSize) {
+    if firstIndex == (first.count - 1) {
+        answer += second.dropFirst(secondIndex)
+        break
+    }
+    if secondIndex == (second.count - 1) {
+        answer += first.dropFirst(firstIndex)
+        break
+    }
+    
+    if first[firstIndex] < second[secondIndex] {
+        answer.append(first[firstIndex])
+        firstIndex += 1
+    } else {
+        answer.append(second[secondIndex])
+        secondIndex += 1
+    }
+}
+print(answer)
