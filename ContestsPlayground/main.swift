@@ -668,44 +668,10 @@ for (index, value) in inputString.enumerated() {
 print(arr.max()! - 1)
 */
 
-
-// MARK: - 739. Daily Temperatures
-
-//Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days
-//you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
 /*
-class Solution {
-    func collapseStack (stack: [Int], max: Int) -> [Int] {
-        var newStack = stack
-        while (stack.isEmpty == false && stack.last! < max ) {
-            newStack.removeLast()
-        }
-        newStack.append(max)
-        return newStack
-    }
-    
-    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
-        let reversArr: [Int] = temperatures.reversed()
-        var maxStack: [Int] = []
-        
-        for item in 1...(reversArr.count - 1) {
-            if !maxStack.isEmpty && item > maxStack.last! {
-                maxStack = collapseStack(stack: maxStack, max: item)
-            }
-            
-        }
-        return []
-    }
-}
-
-let sol = Solution()
-let temperatures = [73,74,75,71,69,72,76,73]
-sol.dailyTemperatures(temperatures)
-*/
-
 // MARK: - merge sort
-let first = [ 1, 34, 45, 56, 678, 890, 1000, 1002, 2345, 66789, 987654, 98765678]
-let second = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 1234, 5678, 8765, 98765]
+let first: [Int] = []
+let second: [Int] =  []
 var answer: [Int] = []
 let rightSize = first.count + second.count
 
@@ -713,11 +679,12 @@ var firstIndex = 0
 var secondIndex = 0
 
 while(answer.count != rightSize) {
-    if firstIndex == (first.count - 1) {
+    if firstIndex > (first.count - 1) {
         answer += second.dropFirst(secondIndex)
         break
     }
-    if secondIndex == (second.count - 1) {
+    
+    if secondIndex > (second.count - 1) {
         answer += first.dropFirst(firstIndex)
         break
     }
@@ -731,3 +698,103 @@ while(answer.count != rightSize) {
     }
 }
 print(answer)
+*/
+/*
+//MARK: - 1. Two Sum
+//Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+//You may assume that each input would have exactly one solution, and you may not use the same element twice.
+//You can return the answer in any order.
+
+class Solution {
+    struct mapValue {
+        let value: Int
+        let index: Int
+    }
+    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+        var map: [Int: mapValue] = [:]
+        for (index, value) in nums.enumerated() {
+            map.updateValue(item, forKey: mapValue(item,index: ))
+        }
+        
+        for item in nums {
+            if item
+        }
+        return [0,0]
+    }
+}
+
+let sol = Solution()
+let nums = [3,2,4]
+let target = 6
+sol.twoSum(nums, target)
+*/
+
+/*
+//C. Изготовление палиндромов
+import Foundation
+
+let inputString: [Character] = Array(readLine()!)
+//print(inputString)
+
+var counter = 0
+for i in 0...((inputString.count - 1 ) / 2) {
+    if inputString[i] != inputString[inputString.count - 1 - i] {
+        counter += 1
+    }
+}
+print(counter)
+*/
+
+
+// MARK: - 739. Daily Temperatures
+
+//Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days
+//you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+/*
+class Solution {
+    var stack: [StackElement] = []
+    var answer: [Int] = []
+    
+    struct StackElement {
+        let element: Int
+        let weight: Int
+    }
+    
+    func collapseStack (newElement: Int) {
+        if stack.isEmpty {
+            stack.append(StackElement(element: newElement, weight: 0))
+            answer.append(0)
+            return
+        }
+        
+        var newWeight = 0
+        
+        while stack.isEmpty == false && (stack.last!.element <= newElement) {
+            newWeight += stack.removeLast().weight + 1
+        }
+        
+        if stack.isEmpty {
+            stack.append(StackElement(element: newElement,
+                                      weight: 0))
+            answer.append(0)
+            return
+        }
+        stack.append(StackElement(element: newElement,
+                                  weight: newWeight))
+        answer.append(newWeight + 1)
+    }
+    
+    func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+        let reversArr: [Int] = temperatures.reversed()
+        for item in reversArr {
+            collapseStack(newElement: item)
+        }
+        return answer.reversed()
+    }
+}
+
+let sol = Solution()
+let temperatures = [73,74,75,71,69,72,76,73]
+print(sol.dailyTemperatures(temperatures))
+*/
