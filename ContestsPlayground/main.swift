@@ -699,34 +699,33 @@ while(answer.count != rightSize) {
 }
 print(answer)
 */
-/*
+
 //MARK: - 1. Two Sum
 //Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 //You may assume that each input would have exactly one solution, and you may not use the same element twice.
 //You can return the answer in any order.
-
+/*
 class Solution {
-    struct mapValue {
-        let value: Int
-        let index: Int
-    }
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-        var map: [Int: mapValue] = [:]
+        var map: [Int: Int] = [:]
         for (index, value) in nums.enumerated() {
-            map.updateValue(item, forKey: mapValue(item,index: ))
+            map.updateValue(index, forKey: (target - value))
         }
         
-        for item in nums {
-            if item
+        for (index, value) in nums.enumerated() {
+            let answer = map[value]
+            if answer != nil && answer != index {
+               return [index, answer!]
+            }
         }
         return [0,0]
     }
 }
-
+ 
 let sol = Solution()
-let nums = [3,2,4]
-let target = 6
-sol.twoSum(nums, target)
+let nums = [2,7,11,15]
+let target = 9
+print(sol.twoSum(nums, target))
 */
 
 /*
@@ -797,4 +796,32 @@ class Solution {
 let sol = Solution()
 let temperatures = [73,74,75,71,69,72,76,73]
 print(sol.dailyTemperatures(temperatures))
+*/
+
+// MARK: - 933. Number of Recent Calls
+
+//You have a RecentCounter class which counts the number of recent requests within a certain time frame.
+//
+//Implement the RecentCounter class:
+//
+//RecentCounter() Initializes the counter with zero recent requests.
+//int ping(int t) Adds a new request at time t, where t represents some time in milliseconds, and returns the number of requests that has happened in the past 3000 milliseconds (including the new request). Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
+//It is guaranteed that every call to ping uses a strictly larger value of t than the previous call.
+/*
+class RecentCounter {
+    var queue: [Int] = []
+
+    func ping(_ t: Int) -> Int {
+        if queue.isEmpty {
+            queue.append(t)
+            return 1
+        }
+        
+        while(queue.isEmpty == false && (t - queue.first!) > 3000) {
+            queue.removeFirst()
+        }
+        queue.append(t)
+        return queue.count
+    }
+}
 */
