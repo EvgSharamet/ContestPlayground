@@ -825,3 +825,86 @@ class RecentCounter {
     }
 }
 */
+
+
+// MARK: - Очередь максимумов на двух стеках
+
+class MinStack {
+    struct Element {
+        let value: Int
+        let min: Int
+    }
+    
+    var stack: [Element] = []
+    
+    func push(_ val: Int) {
+        if let min = stack.last?.min {
+            if min < val {
+                stack.append(Element(value: val,
+                                     min: min))
+                return
+            }
+        }
+        stack.append(Element(value: val, min: val))
+    }
+    
+    func pop() {
+        stack.removeLast()
+    }
+    
+    func top() -> Int? {
+        stack.last?.value
+    }
+    
+    func getMin() -> Int? {
+        stack.last?.min
+    }
+}
+
+
+class MinQueue {
+    var inStack = MinStack()
+    var outStack = MinStack()
+    
+    func push(value: Int ) {
+        inStack.push(value)
+    }
+    
+    func pop() {
+        if outStack.stack.isEmpty && inStack.stack.isEmpty == false {
+            inToOut()
+            outStack.pop()
+            return
+        }
+        
+        outStack.pop()
+    }
+    
+    func min() -> Int? {
+        return inStack.getMin()! < outStack.getMin()! ? inStack.getMin() : outStack.getMin()
+    }
+    
+    private func inToOut() {
+        while inStack.stack.isEmpty == false {
+            outStack.push(inStack.top()!)
+            inStack.pop()
+        }
+    }
+}
+
+let input = [ 1, 45, -4, 65, 66, -23 ,89, 567, -89, 92, 22, 12, 4]
+let minQ = MinQueue()
+
+for item in input {
+    minQ.push(value: item)
+    print(minQ.inStack.stack)
+    print(minQ.outStack.stack)
+}
+
+minQ.pop()
+minQ.pop()
+minQ.pop()
+minQ.push(value: 2)
+print(minQ.inStack.stack)
+print(minQ.outStack.stack)
+print(minQ.min())
