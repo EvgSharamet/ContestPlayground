@@ -956,79 +956,120 @@ dsu.merge(x:  2, y: 6)
 dsu.merge(x: 5, y: 6)
 print(dsu.parents)
 */
-
+//
 // MARK: - D. Реструктуризация компании
 
-// и type = 1 или type = 2, то запрос представляет собой решение кризисного менеджера об объединении отделов соответственно первого или второго вида. Если type = 3,
-class DSU {
-    var parents: [Int] = []
-    var rank: [Int] = []
-    
-    func executeRequest(req: Int, x: Int, y: Int) {
-        if req == 1 {
-            merge(x: x, y: y)
-        }
-         
-        if req == 2 {
-            for i in x...y {
-                merge(x: x, y: i)
-            }
-        }
-        
-        if req == 3 {
-            root(value: x) == root(value: y) ? print("YES") : print("NO")
-        }
-    }
-    
-    init(size: Int) {
-        for i in 0...size - 1 {
-            parents.append(i)
-            rank.append(1)
-        }
-    }
-    
-    private func root(value: Int) -> Int {
-        if parents[value] == value {
-            return value
-        }
-    
-        parents[value] = root(value: parents[value])
-        return parents[value]
-    }
-    
-    private func merge(x: Int, y: Int) -> Bool {
-        let xRoot = root(value: x)
-        let yRoot = root(value: y)
-        
-        if xRoot == yRoot {
-            return true
-        }
-        
-        if rank[xRoot] > rank[yRoot] {
-            parents[yRoot] = xRoot
-            return false
-        }
-        
-        if rank[yRoot] > rank[xRoot] {
-            parents[xRoot] = yRoot
-            return false
-        }
-        
-        if rank[yRoot] == rank[xRoot] {
-            parents[xRoot] = yRoot
-            rank[yRoot] += 1
-        }
-        return false
-    }
-}
+ //и type = 1 или type = 2, то запрос представляет собой решение кризисного менеджера об объединении отделов соответственно первого или второго вида. Если type = 3,
+//class DSU {
+//    var parents: [Int] = []
+//    var rank: [Int] = []
+//
+//    func executeRequest(req: Int, x: Int, y: Int) {
+//        if req == 1 {
+//            merge(x: x, y: y)
+//        }
+//
+//        if req == 2 {
+//            for i in x...y {
+//                merge(x: x, y: i)
+//            }
+//        }
+//
+//        if req == 3 {
+//            root(value: x) == root(value: y) ? print("YES") : print("NO")
+//        }
+//    }
+//
+//    init(size: Int) {
+//        for i in 0...size - 1 {
+//            parents.append(i)
+//            rank.append(1)
+//        }
+//    }
+//
+//    private func root(value: Int) -> Int {
+//        if parents[value] == value {
+//            return value
+//        }
+//
+//        parents[value] = root(value: parents[value])
+//        return parents[value]
+//    }
+//
+//    private func merge(x: Int, y: Int) -> Bool {
+//        let xRoot = root(value: x)
+//        let yRoot = root(value: y)
+//
+//        if xRoot == yRoot {
+//            return true
+//        }
+//
+//        if rank[xRoot] > rank[yRoot] {
+//            parents[yRoot] = xRoot
+//            return false
+//        }
+//
+//        if rank[yRoot] > rank[xRoot] {
+//            parents[xRoot] = yRoot
+//            return false
+//        }
+//
+//        if rank[yRoot] == rank[xRoot] {
+//            parents[xRoot] = yRoot
+//            rank[yRoot] += 1
+//        }
+//        return false
+//    }
+//}
+//
+//let inputString = readLine()!.split(separator: " ")
+//let n = Int(inputString[0])!
+//let q = Int(inputString[1])!
+//
+//let dsu = DSU(size: n)
+//
+//for _ in 1...q {
+//    let request = readLine()!.split(separator: " ")
+//    dsu.executeRequest(req: Int(request[0])!, x: Int(request[1])!, y: Int(request[2])!)
+//}
 
-let inputString = readLine()!.split(separator: " ")
-let n = Int(inputString[0])!
-let q = Int(inputString[1])!
 
-let dsu = DSU(size: n)
+// MARK: - Бинарный поиск
 
-for _ in 1...q {
-    let request = readLine()!.split(separator: " ")
-    dsu.executeRequest(req: Int(request[0])!, x: Int(request[1])!, y: Int(request[2])!)
-}
+//
+//var input  = [ 1, 10, 12, 15, 16, 20, 22, 24, 29, 31, 32, 36, 67, 78, 98]
+//
+//class Solution {
+//    func findElement(arr: [Int], value: Int) -> Int? {
+//        var left = 0
+//        var medium  = arr.count / 2
+//        var right = arr.count - 1
+//
+//        while( left <= right)   {
+//            print("left = \(left), medium = \(medium), right = \(right)")
+//
+//            if arr[medium] == value {
+//                return medium
+//            }
+//
+//            if value > arr[medium] {
+//                left = medium + 1
+//            } else {
+//                right = medium - 1
+//            }
+//            medium = left + (right - left) / 2
+//        }
+//        return nil
+//    }
+//}
+//
+//let sol = Solution()
+//for (index, value) in input.enumerated() {
+//    print("index = \(index), value = \(value)")
+//}
+//
+//print(sol.findElement(arr: input, value: 98))
+
+// MARK: - последовательность со смещением
+// Дана отсортированная последовательность, в которой произошло смещение (кольцевое) элементов. Найти где произошло смщещение
+
