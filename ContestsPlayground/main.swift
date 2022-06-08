@@ -1069,7 +1069,35 @@ print(dsu.parents)
 //}
 //
 //print(sol.findElement(arr: input, value: 98))
-
+//
+//
 // MARK: - последовательность со смещением
+
 // Дана отсортированная последовательность, в которой произошло смещение (кольцевое) элементов. Найти где произошло смщещение
+//import Foundation
+//
+//class BinSearch {
+//    func found(array: [Int]) -> Int {
+//        var left = 0
+//        var right = array.count - 1
+//        var medium = array.count / 2
+//
+//        while (left != right) {
+//            print("left = \(array[left]), medium = \(array[medium]), right = \(array[right])")
+//            if array[left] < array[medium] {
+//                left = medium
+//            } else {
+//                right = medium
+//            }
+//            medium = left + (right - left) / 2
+//        }
+//        return array[medium]
+//    }
+//}
+//
+//let input = [34, 39, 60, 100, 102 , 103, 104, 105, 106, 32]
+//print(BinSearch().found(array: input))
+
+
+
 
