@@ -1098,6 +1098,59 @@ print(dsu.parents)
 //let input = [34, 39, 60, 100, 102 , 103, 104, 105, 106, 32]
 //print(BinSearch().found(array: input))
 
+//MARK: - Динамика
+/*
+// Поиск в двумерном массиве
+let n = 4
+let inputString = [-85,  72, -14, -93, -153,
+                    163, -205, -166, -17, -49,
+                    140, -64, -62, -144, -64,
+                    -38, -48,   4,  53, -45,
+                     53, -89, 141, -77,  -2]
 
 
+var arr: [[Int]] = Array(repeating: Array(repeating: 0, count: 5), count: 5)
 
+var counter = 0
+for i in 0...n {
+    for j in 0...n {
+        print(i + j)
+        arr[i][j] = inputString[counter]
+        counter += 1
+    }
+}
+
+var answerArr = arr
+
+for i in answerArr {
+    print(i)
+}
+
+for i in 1...n {
+    answerArr[i][0] += answerArr[i - 1][0]
+    answerArr[0][i] += answerArr[0][i - 1]
+}
+
+print(" ")
+for i in answerArr {
+    print(i)
+}
+
+for i in 1...n {
+    for j in 1...n {
+        if answerArr[i][j - 1] > answerArr[i - 1][j] {
+           answerArr[i][j] += answerArr[i][j - 1]
+        } else {
+            answerArr[i][j] += answerArr[i - 1][j]
+        }
+    }
+}
+
+print(" ")
+for i in answerArr {
+    print(i)
+}
+
+print( answerArr[n][n])
+*
+ /
