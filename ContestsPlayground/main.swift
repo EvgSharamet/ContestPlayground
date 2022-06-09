@@ -1152,5 +1152,31 @@ for i in answerArr {
 }
 
 print( answerArr[n][n])
-*
- /
+*/
+
+
+// MARK: - 70. Climbing Stairs
+//You are climbing a staircase. It takes n steps to reach the top.
+//ach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+/*
+class Solution {
+    var arr: [Int] = [0, 1, 2]
+    
+    func climbStairs(_ n: Int) -> Int {
+        if n <= 2 {
+            return arr[n]
+        }
+        
+        for i in 3...n {
+            arr.append(arr[i - 1] + arr[i - 2])
+        }
+        return arr[n]
+    }
+}
+
+let sol = Solution()
+print(sol.climbStairs(1))
+*/
+
+
