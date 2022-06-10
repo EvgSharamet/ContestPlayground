@@ -1180,3 +1180,85 @@ print(sol.climbStairs(1))
 */
 
 
+
+// MARK: - 695. Max Area of Island
+//
+//class Solution {
+//    struct cellIndex {
+//        let i: Int
+//        let j: Int
+//    }
+//
+//    var gridWithWrap: [[Int]] = []
+//
+//    func fillGridWithWrap(grid: [[Int]], height: Int, width: Int) -> [[Int]] {
+//        var gridWithWrap = Array(repeating: Array(repeating: -1, count: width + 2), count: height + 2)
+//
+//        for i in (0...height - 1) {
+//            for j in (0...width  - 1) {
+//                gridWithWrap[i + 1][j + 1] = grid[i][j]
+//            }
+//        }
+//        return gridWithWrap
+//    }
+//
+//    func discoverIsland(target: cellIndex) -> Int {
+//        var queue: [cellIndex] = []
+//        queue.append(cellIndex(i: target.i, j: target.j))
+//        var counter = 0
+//        gridWithWrap[target.i][target.j] = 5
+//
+//        while queue.isEmpty == false {
+//            counter += 1
+//            let element = queue.removeFirst()
+//            if gridWithWrap[element.i - 1][element.j] == 1 {
+//                queue.append(cellIndex(i: element.i - 1, j: element.j))
+//                gridWithWrap[element.i - 1][element.j] = 5
+//            }
+//
+//            if gridWithWrap[element.i][element.j - 1] == 1 {
+//                queue.append(cellIndex(i: element.i, j: element.j - 1))
+//                gridWithWrap[element.i][element.j - 1] = 5
+//            }
+//
+//            if gridWithWrap[element.i + 1][element.j] == 1 {
+//                queue.append(cellIndex(i: element.i + 1, j: element.j))
+//                gridWithWrap[element.i + 1][element.j] = 5
+//            }
+//
+//            if gridWithWrap[element.i][element.j + 1] == 1 {
+//                queue.append(cellIndex(i: element.i, j: element.j + 1))
+//                gridWithWrap[element.i][element.j + 1] = 5
+//            }
+//        }
+//
+//        return counter
+//    }
+//
+//    func maxAreaOfIsland(_ grid: [[Int]]) -> Int {
+//        let gridHeight = grid.count
+//        let gridWidth = grid[0].count
+//        gridWithWrap = fillGridWithWrap(grid: grid, height: gridHeight, width: gridWidth)
+//        var max = 0
+//
+//        for i in 1...gridHeight {
+//            for j in 1...gridWidth {
+//                if gridWithWrap[i][j] == 1 {
+//                    let countResult = discoverIsland(target: cellIndex(i: i , j: j))
+//                    if max < countResult {
+//                        max = countResult
+//                    }
+//                }
+//            }
+//        }
+//        return max
+//    }
+//}
+//
+//
+//let grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+//
+//let sol = Solution()
+//
+//print(sol.maxAreaOfIsland(grid))
+
