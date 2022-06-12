@@ -1517,3 +1517,34 @@ print(sol.climbStairs(1))
 //let sol = Solution()
 //let nums = [0,2]
 //print(sol.canJump(nums))
+
+
+//283. Move Zeroes
+//Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+//Note that you must do this in-place without making a copy of the array.
+
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        var shift = 0
+        for (index, value) in nums.enumerated() {
+            if value != 0 {
+                nums[index - shift] = value
+            } else {
+                shift += 1
+            }
+        }
+        
+        if shift == 0 {
+            return
+        }
+        
+        for i in ((nums.count - shift)...(nums.count - 1)).reversed() {
+            nums[i] = 0
+        }
+    }
+}
+
+var nums = [1,3,12,0,0]
+let sol = Solution()
+sol.moveZeroes(&nums)
+print(nums)
