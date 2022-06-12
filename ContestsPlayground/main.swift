@@ -1482,3 +1482,38 @@ print(sol.climbStairs(1))
 //
 
 
+//55. Jump Game
+//You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+//Return true if you can reach the last index, or false otherwise.
+//
+//
+//class Solution {
+//    func canJump(_ nums: [Int]) -> Bool {
+//        var left = 0
+//        var right = 0
+//        for _ in nums.enumerated() {
+//            if left > right {
+//                return false
+//            }
+//
+//            if right >= nums.count - 1 {
+//                return true
+//            }
+//
+//            if right < left + nums[left] {
+//                right = left + nums[left]
+//            }
+//            left += 1
+//        }
+//
+//        if right >= nums.count - 1 {
+//            return true
+//        }
+//        return false
+//    }
+//}
+//
+//
+//let sol = Solution()
+//let nums = [0,2]
+//print(sol.canJump(nums))
