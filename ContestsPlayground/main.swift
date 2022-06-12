@@ -1261,155 +1261,224 @@ print(sol.climbStairs(1))
 //let sol = Solution()
 //
 //print(sol.maxAreaOfIsland(grid))
-
-/*
-
-class Solution {
-    func binFound(nums: [Int]) -> Int {
-        var left = 0
-        var medium  = arr.count / 2
-        var right = arr.count - 1
-        
-        while( left <= right)   {
-            if arr[medium] == value {
-                return medium
-            }
-            
-            if value > arr[medium] {
-                left = medium + 1
-            } else {
-                right = medium - 1
-            }
-            medium = left + (right - left) / 2
-        }
-        return nil
-    }
-    
-    func findElement(arr: [Int], value: Int) -> Int? {
-        
-    }
-    
-    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-        
-    }
-}
-
-let nums = [5,7,7,8,8,10]
-let target = 8
-let sol = Solution()
-sol.searchRange(nums, target)
-*/
-
-
+//
 // MARK: - 1091. Shortest Path in Binary Matrix
-
+//
 //Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix. If there is no clear path, return -1.
 //A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
 //All the visited cells of the path are 0.
 //All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner).
 //The length of a clear path is the number of visited cells of this path.
+//
+//
+//class Solution {
+//    func shortestPathBinaryMatrix(_ grid: [[Int]]) -> Int {
+//
+//        return -1
+//    }
+//}
+//
+//let sol = Solution()
+//let grid = [[0,0,0],[1,1,0],[1,1,0]]
+//
+//print(sol.shortestPathBinaryMatrix(grid))
+//
+//// Интерн мобайл Яндекс
+//
+// import Foundation
+//
+//let sn = readLine()!.split(separator: " ")
+//let S = Int(sn[0])!
+//let N = Int(sn[1])!
+//var inputString = readLine()!.split(separator: " ")
+//var max = Int(inputString[0])!
+//var min = max
+//
+//if N == 1 {
+//    print(abs(S - min))
+//    exit(0)
+//}
+//
+//for item in (inputString) {
+//    let it = Int(item)!
+//    if it > max {
+//        max = it
+//    }
+//    if it < min {
+//        min = it
+//    }
+//}
+//
+//
+//var arr: [Int] = [min, max, S]
+//arr.sort()
+//
+//if S == arr[0] {
+//    print( abs(S - arr[2]))
+//    exit(0)
+//}
+//
+//if S == arr[1] {
+//    abs(S - arr[0]) < abs(S - arr[2]) ? print( 2 * abs(S - arr[0]) + abs(S - arr[2])) : print( 2 * abs(S - arr[2]) + abs(S - arr[0]))
+//    exit(0)
+//}
+//
+//print( abs(S - arr[0]))
+//exit(0)
+//
+//import Foundation
+//
+//func happy(dog: Int, collar: Int) -> Int {
+//    if collar <= dog {
+//        return 0
+//    }
+//
+//    let r = collar - dog
+//    if r > 100 {
+//        return 30
+//    }
+//    return r / 2
+//}
+//
+//let dec: [Int] = []
+//let n = Int(readLine()!)!
+//var dogsSub = readLine()!.split(separator: " ")
+//var collarsSub = readLine()!.split(separator: " ")
+//var dogs: [Int] = []
+//var collars: [Int] = []
+//
+//for i in 0...n-1 {
+//    dogs.append(Int(dogsSub[i])!)
+//    collars.append(Int(collarsSub[i])!)
+//}
+//
+//var min = Int.max
+//var minNum = 0
+//
+//for num in 1...n {
+//    var hap = 0
+//    for (index, value) in dogs.enumerated() {
+//        hap += happy(dog: value, collar: collars[index])
+//    }
+//
+//    if hap < min {
+//        min = hap
+//        minNum = num
+//    }
+//
+//    let first = dogs.removeFirst()
+//    dogs.append(first)
+//}
+//
+//print( minNum, min)
+//
 
-/*
-class Solution {
-    func shortestPathBinaryMatrix(_ grid: [[Int]]) -> Int {
-      
-        return -1
-    }
-}
 
-let sol = Solution()
-let grid = [[0,0,0],[1,1,0],[1,1,0]]
+//
+//34. Find First and Last Position of Element in Sorted Array
+//Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+//If target is not found in the array, return [-1, -1].
+//You must write an algorithm with O(log n) runtime complexity.
+//
+// class Solution {
+//     enum Edge {
+//         case left
+//         case right
+//     }
+//
+//     func binFound(nums: [Int], target: Int, edge: Edge) -> Int {
+//         switch edge {
+//         case .left:
+//             if nums[0] == target {
+//                 return 0
+//             }
+//             var left = 1
+//             var medium = nums.count / 2
+//             var right = nums.count - 1
+//
+//             if nums[left] > target {
+//                 return -1
+//             }
+//
+//             while( !(nums[medium - 1] < target && nums[medium] == target)) {
+//                 if (left >= right) {
+//                     return -1
+//                 }
+//              //   print("left = \(left), medium = \(medium), right = \(right)")
+//                 if target > nums[medium] {
+//                     left = medium + 1
+//                 } else {
+//                     right = medium - 1
+//                 }
+//                 medium = left + (right - left) / 2
+//             }
+//             return medium
+//         case .right:
+//
+//             if nums[nums.count - 1] == target {
+//                 return nums.count - 1
+//             }
+//
+//             var left = 0
+//             var medium = nums.count / 2
+//             var right = nums.count - 2
+//             if nums[right] < target {
+//                 return -1
+//             }
+//
+//             while( !(nums[medium + 1] > target && nums[medium] == target )) {
+//                 if (left >= right ) {
+//                     return -1
+//                 }
+//                 if target >= nums[medium] {
+//                     left = medium + 1
+//                 } else {
+//                     right = medium - 1
+//                 }
+//                 medium = left + (right - left) / 2
+//             }
+//             return medium
+//         }
+//     }
+//
+//     func searchRange(_ nums: [Int], _ target: Int ) -> [Int] {
+//         if nums.count == 0 {
+//             return [-1, -1]
+//         }
+//
+//         if nums.count == 1 {
+//             if nums[0] == target {
+//                 return [0,0]
+//             }
+//             return [-1,-1]
+//         }
+//
+//         if nums.count == 2 {
+//             guard let ind = nums.firstIndex(of: target) else {
+//                 return [-1, -1]
+//             }
+//             if ind == 0 {
+//                 if nums[ind] == nums[ind + 1] {
+//                     return [0,1]
+//                 }
+//                 return [0,0]
+//             }
+//
+//             if ind == 1 {
+//                 return [1,1]
+//             }
+//         }
+//
+//         return [ binFound(nums: nums, target: target, edge: Edge.left),
+//                  binFound(nums: nums, target: target, edge: Edge.right)]
+//     }
+// }
+//
+//let nums: [Int] = [-3,-2,-1]
+//let target = 0
+//
+// let sol = Solution()
+// print (sol.searchRange(nums, target))
+//
 
-print(sol.shortestPathBinaryMatrix(grid))
-*/
-// Интерн мобайл Яндекс
-/*
- import Foundation
 
-let sn = readLine()!.split(separator: " ")
-let S = Int(sn[0])!
-let N = Int(sn[1])!
-var inputString = readLine()!.split(separator: " ")
-var max = Int(inputString[0])!
-var min = max
-
-if N == 1 {
-    print(abs(S - min))
-    exit(0)
-}
-
-for item in (inputString) {
-    let it = Int(item)!
-    if it > max {
-        max = it
-    }
-    if it < min {
-        min = it
-    }
-}
-
-
-var arr: [Int] = [min, max, S]
-arr.sort()
-
-if S == arr[0] {
-    print( abs(S - arr[2]))
-    exit(0)
-}
-
-if S == arr[1] {
-    abs(S - arr[0]) < abs(S - arr[2]) ? print( 2 * abs(S - arr[0]) + abs(S - arr[2])) : print( 2 * abs(S - arr[2]) + abs(S - arr[0]))
-    exit(0)
-}
-
-print( abs(S - arr[0]))
-exit(0)
-
-*/
-/*
-import Foundation
-
-func happy(dog: Int, collar: Int) -> Int {
-    if collar <= dog {
-        return 0
-    }
-    
-    let r = collar - dog
-    if r > 100 {
-        return 30
-    }
-    return r / 2
-}
-
-let dec: [Int] = []
-let n = Int(readLine()!)!
-var dogsSub = readLine()!.split(separator: " ")
-var collarsSub = readLine()!.split(separator: " ")
-var dogs: [Int] = []
-var collars: [Int] = []
-
-for i in 0...n-1 {
-    dogs.append(Int(dogsSub[i])!)
-    collars.append(Int(collarsSub[i])!)
-}
-
-var min = Int.max
-var minNum = 0
-
-for num in 1...n {
-    var hap = 0
-    for (index, value) in dogs.enumerated() {
-        hap += happy(dog: value, collar: collars[index])
-    }
-    
-    if hap < min {
-        min = hap
-        minNum = num
-    }
-    
-    let first = dogs.removeFirst()
-    dogs.append(first)
-}
-
-print( minNum, min)
-*/
