@@ -1522,29 +1522,62 @@ print(sol.climbStairs(1))
 //283. Move Zeroes
 //Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 //Note that you must do this in-place without making a copy of the array.
+//
+//class Solution {
+//    func moveZeroes(_ nums: inout [Int]) {
+//        var shift = 0
+//        for (index, value) in nums.enumerated() {
+//            if value != 0 {
+//                nums[index - shift] = value
+//            } else {
+//                shift += 1
+//            }
+//        }
+//
+//        if shift == 0 {
+//            return
+//        }
+//
+//        for i in ((nums.count - shift)...(nums.count - 1)).reversed() {
+//            nums[i] = 0
+//        }
+//    }
+//}
+//
+//var nums = [1,3,12,0,0]
+//let sol = Solution()
+//sol.moveZeroes(&nums)
+//print(nums)
 
-class Solution {
-    func moveZeroes(_ nums: inout [Int]) {
-        var shift = 0
-        for (index, value) in nums.enumerated() {
-            if value != 0 {
-                nums[index - shift] = value
-            } else {
-                shift += 1
-            }
-        }
-        
-        if shift == 0 {
-            return
-        }
-        
-        for i in ((nums.count - shift)...(nums.count - 1)).reversed() {
-            nums[i] = 0
-        }
-    }
-}
 
-var nums = [1,3,12,0,0]
-let sol = Solution()
-sol.moveZeroes(&nums)
-print(nums)
+//// D. Лавочки в атриуме
+//import Foundation
+//let nk = readLine()!.split(separator: " ")
+//let n = Int(nk[0])!
+//let inputString = readLine()!.split(separator: " ")
+//var arr: [Int] = []
+//for i in inputString {
+//    arr.append(Int(i)!)
+//}
+//
+//if n % 2 == 1 {
+//    let center = n / 2
+//    if arr.firstIndex(of: center) != nil {
+//        print(center)
+//        exit(0)
+//    }
+//    for i in (1...arr.count - 1) {
+//        if arr[i - 1] < center && arr[i] >= center {
+//            print(arr[i - 1], arr[i])
+//            exit(0)
+//        }
+//    }
+//} else {
+//    let center = n / 2
+//    for i in (1...arr.count - 1) {
+//        if arr[i - 1] < center && arr[i] >= center {
+//            print(arr[i - 1], arr[i])
+//            exit(0)
+//        }
+//    }
+//}
