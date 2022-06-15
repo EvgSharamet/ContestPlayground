@@ -5,7 +5,7 @@
 //  Created by Евгения Шарамет on 28.05.2022.
 //
 
-//Конидтерская доставка
+//Кондитерская доставка
 /*
 let tempValue = readLine()
 let name = readLine()
@@ -1581,3 +1581,60 @@ print(sol.climbStairs(1))
 //        }
 //    }
 //}
+
+//MARK: - Algoritm 1 (LeetCode)
+//
+////704. Binary Search
+//class Solution {
+//    func search(_ nums: [Int], _ target: Int) -> Int {
+//        var left = 0
+//        var medium  = nums.count / 2
+//        var right = nums.count - 1
+//
+//        while( left <= right)   {
+//            print("left = \(left), medium = \(medium), right = \(right)")
+//
+//            if nums[medium] == target {
+//                return medium
+//            }
+//
+//            if target > nums[medium] {
+//                left = medium + 1
+//            } else {
+//                right = medium - 1
+//            }
+//            medium = left + (right - left) / 2
+//        }
+//        return -1
+//    }
+//}
+
+
+
+// MARK: - 705. Design HashSet
+
+class MyHashSet {
+    var arr: [Int?] = [Int?] (repeating: nil, count: 10000000)
+    
+    init() {}
+    
+    func add(_ key: Int) {
+        arr[key] = key
+    }
+    
+    func remove(_ key: Int) {
+        arr[key] = nil
+    }
+    
+    func contains(_ key: Int) -> Bool {
+        if arr[key] != nil {
+            return true
+        }
+        return false
+    }
+    
+}
+
+let set = MyHashSet()
+print(set.arr)
+
